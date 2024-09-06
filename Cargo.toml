@@ -1,15 +1,25 @@
 [package]
 name = "penning-launcher"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 
 [dependencies]
+chrono = "0.4.38"
 dirs = "5.0.1"
+flate2 = "1.0.33"
 octocrab = "0.39.0"
 reqwest = "0.12.7"
-rfd = { version = "0.14.1", default-features = false, features = ["tokio", "xdg-portal"] }
+rfd = { version = "0.14.1", default-features = false, features = [
+    "tokio",
+    "xdg-portal",
+] }
 self-replace = "1.5.0"
-semver = "1.0.23"
-serde = { version = "1.0.210", features = ["derive"] }
+semver = { version = "1.0.23", features = ["serde"] }
 serde_json = "1.0.128"
 tokio = { version = "1.40.0", features = ["full"] }
+
+[target.'cfg(not(windows))'.dependencies]
+tar = "0.4.41"
+
+[target.'cfg(windows)'.dependencies]
+zip-extract = "0.2.1"
